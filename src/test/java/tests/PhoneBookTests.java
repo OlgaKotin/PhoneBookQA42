@@ -1,16 +1,18 @@
 package tests;
 
-import Models.Contact;
+import models.Contact;
 import config.BaseTest;
 import helpers.*;
 import io.qameta.allure.Allure;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 
+import java.io.IOException;
+
 public class PhoneBookTests extends BaseTest {
+
     @Test
     public void loginWithOutPasswordTestPositive() throws InterruptedException {
         Allure.description("Login without password. Positive test.");
@@ -53,23 +55,6 @@ public class PhoneBookTests extends BaseTest {
     }
 
     @Test
-    public void loginOfAnExistingUserAddContact() {
-        MainPage mainPage = new MainPage(getDriver());
-        LoginPage loginPage = BasePage.openTopMenuItem(TopMenuItems.LOGIN);
-        loginPage
-                .fillEmailField("loginfb42@mail.com")
-                .fillPasswordField("Ytpyfrjvrf0!")
-                .clickByLoginButton();
-        AddPage addPage = BasePage.openTopMenuItem(TopMenuItems.ADD);
-        Contact contact = new Contact(NameAndLastNameGenerator.generateName(),
-                NameAndLastNameGenerator.generateLastName(),
-                PhoneNumberGenerator.generatePhoneNumber(),
-                EmailGenerator.generateEmail(5,4,2),
-                AddressGenerator.generateAddress(), "?");
-
-    }
-
-    @Test
     public void successfulRegistration() {
         Allure.description("Successful registration test.");
         MainPage mainPage = new MainPage(getDriver());
@@ -84,7 +69,52 @@ public class PhoneBookTests extends BaseTest {
         } else {
             TakeScreen.takeScreenShot(getDriver(), "Successful Registration");
         }
+    }
 
+    @Test
+    public void loginOfAnExistingUserAddContact() {
+        MainPage mainPage = new MainPage(getDriver());
+        LoginPage loginPage = BasePage.openTopMenuItem(TopMenuItems.LOGIN);
+        loginPage
+                .fillEmailField("loginfb42@mail.com")
+                .fillPasswordField("Ytpyfrjvrf0!")
+                .clickByLoginButton();
+        AddPage addPage = BasePage.openTopMenuItem(TopMenuItems.ADD);
+        Contact contact = new Contact(NameAndLastNameGenerator.generateName(),
+                NameAndLastNameGenerator.generateLastName(),
+                PhoneNumberGenerator.generatePhoneNumber(),
+                EmailGenerator.generateEmail(5,4,2),
+                AddressGenerator.generateAddress(), "desc");
+
+        addPage.fillContactFormAndSave(contact);
+        ContactsPage contactsPage = new ContactsPage(getDriver());
+        Assert.assertTrue(contactsPage.getDataFromContactList(contact));
+    }
+
+    @Test
+    public void deleteContactWithSerialization() throws IOException {
+        String fileName = "contactDataFile.ser";
+        MainPage mainPage = new MainPage(getDriver());
+        LoginPage loginPage = BasePage.openTopMenuItem(TopMenuItems.LOGIN);
+        loginPage
+                .fillEmailField("loginfb42@mail.com")
+                .fillPasswordField("Ytpyfrjvrf0!")
+                .clickByLoginButton();
+        AddPage addPage = BasePage.openTopMenuItem(TopMenuItems.ADD);
+        Contact contact = new Contact(NameAndLastNameGenerator.generateName(),
+                NameAndLastNameGenerator.generateLastName(),
+                PhoneNumberGenerator.generatePhoneNumber(),
+                EmailGenerator.generateEmail(5,3,2),
+                AddressGenerator.generateAddress(), "description");
+
+        addPage.fillContactFormAndSave(contact);
+        Contact.serializationContact(contact, fileName);
+        ContactsPage contactsPage = new ContactsPage(getDriver());
+        Contact deserializedContact = Contact.deSerializationContact(fileName);
+
+        Assert.assertNotEquals(contactsPage.deleteContactByPhoneNumber(deserializedContact.getPhone()),
+                contactsPage.getContactListSize());
+        
     }
 
 }
