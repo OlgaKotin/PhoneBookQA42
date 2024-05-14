@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="user1">mymail@mail.com</entry>
+<entry key="mypassword">Ytpyfrjvrf0!</entry>
+<entry key="user2">mymail2@mail.com</entry>
+<entry key="maxValue">4</entry>
+<entry key="myuser">loginfb42@mail.com</entry>
+<entry key="user3">mymail3@mail.com</entry>
+<entry key="token">eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoibG9naW5mYjQyQG1haWwuY29tIiwiaXNzIjoiUmVndWxhaXQiLCJleHAiOjE3MTYyNzg1NDMsImlhdCI6MTcxNTY3ODU0M30.EFQhVXvdc_ywLFh40T9dOwfjoT9C1eg317R97boH5I8</entry>
+</properties>
