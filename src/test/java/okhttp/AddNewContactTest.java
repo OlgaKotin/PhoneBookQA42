@@ -229,4 +229,17 @@ public class AddNewContactTest implements TestHelper {
                 PhoneNumberGenerator.generatePhoneNumber(), email,
                 AddressGenerator.generateAddress(), 409);
     }
+    @Test
+    public void addNewContactNegativeDuplicateEmailAndPhone() throws IOException {
+        String email = EmailGenerator.generateEmail(5,3,2);
+        String phone = PhoneNumberGenerator.generatePhoneNumber();
+
+        addNewContactPositiveTest(NameAndLastNameGenerator.generateName(),
+                NameAndLastNameGenerator.generateLastName(),
+                phone, email, AddressGenerator.generateAddress());
+
+        addNewContactNegativeTest(NameAndLastNameGenerator.generateName(),
+                NameAndLastNameGenerator.generateLastName(),
+                phone, email, AddressGenerator.generateAddress(), 409);
+    }
 }
