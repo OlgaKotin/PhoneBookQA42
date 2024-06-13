@@ -5,7 +5,6 @@ import interfaces.TestHelper;
 import io.restassured.http.ContentType;
 import models.NewUserModel;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.given;
 
 public class SecurityTest implements TestHelper {
