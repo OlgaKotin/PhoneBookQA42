@@ -1,7 +1,7 @@
-HTTP/1.1 200 
+HTTP/1.1 401 
 Server: Cowboy
-Report-To: {"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1716472413&sid=929419e7-33ea-4e2f-85f0-7d8b7cd5cbd6&s=0RF9RVjFu3B%2FrN1drA%2FaB2tTkLv2L%2Fsw2cH2zEaC7LQ%3D"}]}
-Reporting-Endpoints: heroku-nel=https://nel.heroku.com/reports?ts=1716472413&sid=929419e7-33ea-4e2f-85f0-7d8b7cd5cbd6&s=0RF9RVjFu3B%2FrN1drA%2FaB2tTkLv2L%2Fsw2cH2zEaC7LQ%3D
+Report-To: {"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1720462644&sid=929419e7-33ea-4e2f-85f0-7d8b7cd5cbd6&s=cj58Wmw1oBGx%2FpXpbhVQ1DYcMTVJUt561fOmDxN4LvI%3D"}]}
+Reporting-Endpoints: heroku-nel=https://nel.heroku.com/reports?ts=1720462644&sid=929419e7-33ea-4e2f-85f0-7d8b7cd5cbd6&s=cj58Wmw1oBGx%2FpXpbhVQ1DYcMTVJUt561fOmDxN4LvI%3D
 Nel: {"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}
 Connection: keep-alive
 Vary: Origin
@@ -14,55 +14,21 @@ Pragma: no-cache
 Expires: 0
 Strict-Transport-Security: max-age=31536000 ; includeSubDomains
 X-Frame-Options: DENY
-Content-Type: application/json
-Transfer-Encoding: chunked
-Date: Thu, 23 May 2024 13:53:33 GMT
+Content-Type: application/json;charset=ISO-8859-1
+Content-Length: 256
+Date: Mon, 08 Jul 2024 18:17:24 GMT
 Via: 1.1 vegur
 
 {
-    "contacts": [
-        {
-            "id": "08fdcf9b-3e40-4113-85c4-5705865eadb8",
-            "name": "Rickey",
-            "lastName": "Russell",
-            "email": "ilrju@dds.ur",
-            "phone": "77048796615",
-            "address": "1359162, Karmiel, Emek Refaim Street, 35",
-            "description": "desc"
-        },
-        {
-            "id": "c4d09b54-d42a-4fe3-84c0-eecce95d3be9",
-            "name": "Eduardo",
-            "lastName": "Ruiz",
-            "email": "pzmlu@per.nz",
-            "phone": "982468419062",
-            "address": "3286271, Netanya, Frishman Street, 92",
-            "description": "desc"
-        },
-        {
-            "id": "440fb319-3381-4840-b311-f909ad971324",
-            "name": "Armando",
-            "lastName": "Roberts",
-            "email": "mettcb@hw.mh",
-            "phone": "9037858855279",
-            "address": "2935216, Kfar Yehoshua, HaAlonim Street, 57",
-            "description": "desc"
-        }
-    ]
+    "timestamp": "2024-07-08T18:17:24",
+    "status": 401,
+    "error": "Unauthorized",
+    "message": "JWT expired at 2024-05-29T14:01:59Z. Current time: 2024-07-08T18:17:24Z, a difference of 3471325494 milliseconds.  Allowed clock skew: 0 milliseconds.",
+    "path": "/v1/contacts"
 }
-Rickey
-ilrju@dds.ur
-**************************************************
-Eduardo
-pzmlu@per.nz
-**************************************************
-Armando
-mettcb@hw.mh
-**************************************************
-++++++++++++++
 
 ===============================================
 Default Suite
-Total tests run: 1, Passes: 1, Failures: 0, Skips: 0
+Total tests run: 1, Passes: 0, Failures: 1, Skips: 0
 ===============================================
 
